@@ -9,7 +9,7 @@ const AboutApp = () => (
         <div style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 2 }}>Joe</div>
         <div style={{ color: '#000080', fontSize: 13, marginBottom: 10 }}>Data Engineer</div>
         <div style={{ color: '#333', lineHeight: 1.6, maxWidth: 310, fontSize: 11 }}>
-          Hi! I'm Joe — a Data Engineer with 6+ years of experience
+          Hi! I'm Joe — a Senior Data Engineer with 8+ years of experience
           building reliable pipelines, ETL systems, and analytics
           infrastructure. I love turning messy data into clean,
           scalable systems that teams can actually rely on.
@@ -21,13 +21,13 @@ const AboutApp = () => (
     <table style={{ fontSize: 11, borderCollapse: 'collapse', width: '100%' }}>
       <tbody>
         {[
-          ['Location', 'London, UK'],
+          ['Location', 'Philadelphia, PA'],
           ['Status', 'Open to opportunities'],
           ['OS', 'Windows 95 (Career Edition v6.2)'],
-          ['Processor', 'Python 3.11 @ 6 YOE'],
+          ['Processor', 'Python 3.13 @ 8 YOE'],
           ['Memory', '∞ TB SQL knowledge installed'],
-          ['GitHub', 'github.com/joe'],
-          ['Email', 'joe@example.com'],
+          ['GitHub', 'github.com/joedementri'],
+          ['Email', 'joedementri42012@gmail.com'],
         ].map(([k, v]) => (
           <tr key={k}>
             <td style={{ padding: '3px 12px 3px 0', fontWeight: 'bold', color: '#444', whiteSpace: 'nowrap', verticalAlign: 'top' }}>{k}:</td>
