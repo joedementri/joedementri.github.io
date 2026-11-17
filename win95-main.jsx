@@ -25,6 +25,21 @@ const DESKTOP_ICONS = [
   { id: 'mine',     label: 'Minesweeper',        iconType: 'mine'     },
 ];
 
+// Shortcuts to repos that publish a GitHub Pages site — shown centered on the desktop
+const PROJECT_SHORTCUTS = [
+  { id: 'lnk-ballot',   label: 'Ballot Ladder',     iconType: 'ballot',     url: 'https://joedementri.github.io/ballot-ladder/' },
+  { id: 'lnk-matrix',   label: 'Battle Matrix',     iconType: 'matrix',     url: 'https://joedementri.github.io/battle-matrix/' },
+  { id: 'lnk-civ',      label: 'Civ 6 Drafter',     iconType: 'civ',        url: 'https://joedementri.github.io/Civilization-6-Drafter/' },
+  { id: 'lnk-craps',    label: 'Craps',             iconType: 'dice',       url: 'https://joedementri.github.io/craps/' },
+  { id: 'lnk-cs2',      label: 'CS2 Lineups',       iconType: 'crosshair',  url: 'https://joedementri.github.io/cs2-lineup-viewer/' },
+  { id: 'lnk-fantasy',  label: 'Fantasy Football',  iconType: 'fantasy',    url: 'https://joedementri.github.io/fantasy-football/' },
+  { id: 'lnk-fm',       label: 'Football Manager',  iconType: 'soccer',     url: 'https://joedementri.github.io/football-manager/' },
+  { id: 'lnk-nba',      label: 'NBA GM Tool',       iconType: 'basketball', url: 'https://joedementri.github.io/nba-gm-tool/' },
+  { id: 'lnk-poker',    label: 'Video Poker',       iconType: 'poker',      url: 'https://joedementri.github.io/video-poker/' },
+];
+
+const openShortcut = (url) => window.open(url, '_blank', 'noopener');
+
 // Cascade offset per window so they don't all stack exactly
 const CASCADE = { about: [60,50], projects: [120,80], resume: [180,60], skills: [100,120], contact: [240,100], ie: [160,90], recycle: [90,130], mine: [280,70] };
 
@@ -118,6 +133,7 @@ const DesktopIcon = ({ icon, selected, onSelect, onOpen }) => {
     <div onClick={handleClick} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 76, padding: 4, cursor: 'default', gap: 3 }}>
       <div style={{ position: 'relative' }}>
         <W95Icon type={icon.iconType} size={32} />
+        {icon.url && <ShortcutArrow size={32} />}
         {selected && <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,128,0.45)', mixBlendMode: 'multiply', pointerEvents: 'none' }} />}
       </div>
       <span style={{
@@ -251,6 +267,26 @@ const App = () => {
             onOpen={() => openWin(icon.id)}
           />
         ))}
+      </div>
+
+      {/* Project shortcuts — 3×3 grid centered on the desktop (area above the taskbar,
+          offset past the left icon column so they never overlap it) */}
+      <div style={{
+        position: 'absolute', top: 0, bottom: 28, left: 96, right: 96,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        pointerEvents: 'none', zIndex: 10,
+      }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 84px)', gap: '14px 10px', justifyItems: 'center', pointerEvents: 'auto' }}>
+          {PROJECT_SHORTCUTS.map(icon => (
+            <div key={icon.id} title={icon.url}>
+              <DesktopIcon icon={icon}
+                selected={selIcon === icon.id}
+                onSelect={() => setSelIcon(icon.id)}
+                onOpen={() => openShortcut(icon.url)}
+              />
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Windows */}
